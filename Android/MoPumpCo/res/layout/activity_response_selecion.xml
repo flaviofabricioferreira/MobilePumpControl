@@ -1,0 +1,180 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".ResponseSelecionActivity" >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.85" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            
+            <RadioGroup 
+                android:layout_width="fill_parent"
+			    android:layout_height="wrap_content" 
+				android:orientation="vertical"
+				android:id="@+id/radiogroup">
+
+            <RadioButton
+                android:id="@+id/radioButtonInputSignal1"
+                android:layout_width="278dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:text="@string/signal1" />
+            <ImageView
+                android:id="@+id/imageViewSignal1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/signal1" />
+
+<!-- 			<RadioButton -->
+<!--                 android:id="@+id/radioButtonInputSignal3" -->
+<!--                 android:layout_width="278dp" -->
+<!--                 android:layout_height="wrap_content" -->
+<!-- 				android:clickable="true" -->
+<!--                 android:text="@string/signal3" /> -->
+<!--             <ImageView -->
+<!--                 android:id="@+id/imageViewSignal3" -->
+<!--                 android:layout_width="wrap_content" -->
+<!--                 android:layout_height="wrap_content" -->
+<!--                 android:adjustViewBounds="true" -->
+<!--                 android:scaleType="fitXY" -->
+<!--                 android:src="@drawable/signal3" /> -->
+            
+            <RadioButton
+                android:id="@+id/radioButtonInputSignal4"
+                android:layout_width="278dp"
+                android:layout_height="wrap_content"
+				android:clickable="true"
+                android:text="@string/signal4" />
+            <ImageView
+                android:id="@+id/imageViewSignal4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/signal4" />
+
+<!--             <RadioButton -->
+<!--                 android:id="@+id/radioButtonInputSignal6" -->
+<!--                 android:layout_width="278dp" -->
+<!--                 android:layout_height="wrap_content" -->
+<!-- 				android:clickable="true" -->
+<!--                 android:text="@string/signal6" /> -->
+
+<!--             <ImageView -->
+<!--                 android:id="@+id/imageViewSignal6" -->
+<!--                 android:layout_width="wrap_content" -->
+<!--                 android:layout_height="wrap_content" -->
+<!--                 android:adjustViewBounds="true" -->
+<!--                 android:scaleType="fitXY" -->
+<!--                 android:src="@drawable/signal6" /> -->
+            
+			</RadioGroup>
+        </LinearLayout>
+    </ScrollView>
+            
+        <Button
+        android:id="@+id/buttonResponseSelectedOk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="32dp"
+        android:onClick="responseSelectionNext"
+        android:text="@string/next_button" />
+
+<!--         <Button -->
+<!--         android:id="@+id/ButtonResponseSelectionBack" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_alignBaseline="@+id/buttonResponseSelectedOk" -->
+<!--         android:onClick="responseSelectionBack" -->
+<!--         android:text="@string/back_button" /> -->
+
+<!-- <RadioGroup -->
+<!--     android:id="@+id/InputRadioGroup" -->
+<!--     android:layout_width="wrap_content" -->
+<!--     android:layout_height="wrap_content" -->
+<!--     android:layout_alignLeft="@+id/textViewSelectResponseText" -->
+<!--     android:layout_below="@+id/textViewSelectResponseText" -->
+<!--     android:layout_marginTop="22dp" -->
+<!--     android:orientation="vertical" > -->
+
+<!--     <RadioButton -->
+<!--         android:id="@+id/radioButtonResponseSignal1" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_marginTop="19dp" -->
+<!--         android:checked="true" -->
+<!--         android:text="@string/signal1" /> -->
+
+<!--     <RadioButton -->
+<!--         android:id="@+id/radioButtonResponseSignal2" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_marginTop="23dp" -->
+<!--         android:clickable="false" -->
+<!--         android:text="@string/signal2" /> -->
+
+<!--     <RadioButton -->
+<!--         android:id="@+id/radioButtonResponseSignal3" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_marginTop="20dp" -->
+<!--         android:clickable="false" -->
+<!--         android:text="@string/signal3" /> -->
+
+<!--     <RadioButton -->
+<!--         android:id="@+id/radioButtonResponseSignal4" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:clickable="false" -->
+<!--         android:text="@string/signal4" /> -->
+
+<!--     <RadioButton -->
+<!--         android:id="@+id/radioButtonResponseSignal5" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_marginTop="30dp" -->
+<!--         android:clickable="false" -->
+<!--         android:text="@string/signal5" /> -->
+
+<!--     <RadioButton -->
+<!--         android:id="@+id/radioButtonResponseSignal6" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_marginBottom="23dp" -->
+<!--         android:clickable="false" -->
+<!--         android:text="@string/signal6" /> -->
+<!-- </RadioGroup> -->
+
+<!-- <ScrollView -->
+<!--     android:id="@+id/scrollView1" -->
+<!--     android:layout_width="wrap_content" -->
+<!--     android:layout_height="wrap_content" -->
+<!--     android:layout_alignTop="@+id/InputRadioGroup" -->
+<!--     android:layout_centerHorizontal="true" -->
+<!--     android:layout_marginTop="28dp" > -->
+
+<!--     <LinearLayout -->
+<!--         android:layout_width="match_parent" -->
+<!--         android:layout_height="match_parent" -->
+<!--         android:orientation="vertical" > -->
+<!--     </LinearLayout> -->
+<!-- </ScrollView> -->
+    
+</LinearLayout>

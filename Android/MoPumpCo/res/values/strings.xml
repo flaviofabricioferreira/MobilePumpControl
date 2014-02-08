@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MoPumpCo</string>
+    <string name="action_settings">Settings</string>
+    <string name="xstart">X Start</string>
+    <string name="xstartValue">0.0</string>
+    <string name="xend">X End</string>
+    <string name="xendValue">0.0</string>
+    <string name="dirx">X Direction</string>
+    <string name="dirxValue">0.0</string>
+    <string name="ystart">Y Start</string>
+    <string name="ystartValue">0.0</string>
+    <string name="yend">Y End</string>
+    <string name="yendValue">0.0</string>
+    <string name="diry">Y Direction</string>
+    <string name="diryValue">0.0</string>
+    <string name="time1">Time T1</string>
+    <string name="time1Value">0.0</string>
+    <string name="gaink">Gain K</string>
+    <string name="gainkValue">0.0</string>
+    <string name="calculate">Calculate</string>
+    <string name="Tf">Transfer Function :</string>
+    <string name="Tfp">Transfer Function Parameters:</string>
+    <string name="indexi">Index i</string>
+    <string name="indexiValue">0.0</string>
+    <string name="timeTt">Time Tt</string>
+    <string name="timeTtValue">0.0</string>   
+    <string name="title_activity_splash_screen">MoPumpCo</string>
+    <string name="next_button">Next!</string>
+    <string name="back_button">Back!</string>
+    <string name="ok">OK!</string>
+    <string name="signal1">Pump Pressure Signal</string>
+    <string name="signal2">Step Signal</string>
+    <string name="signal3">Signal 3</string>
+    <string name="signal4">Pump Flow Signal</string>
+    <string name="signal5">Signal 5</string>
+    <string name="signal6">Signal 6</string>    
+    
+    <!-- INPUT ACTIVITY -->
+
+    <string name="info_input_selection">Select the Input Signal!</string>
+    <string name="title_activity_input_selection">Select the Input Signal:</string>
+      
+
+    <!-- RESPONSE ACTIVITY -->
+
+    <string name="info_response_selection">Select the Response Signal:</string>
+    <string name="title_activity_response_selecion">Select the Response Signal:</string>
+    
+    
+    
+    
+
+</resources>
