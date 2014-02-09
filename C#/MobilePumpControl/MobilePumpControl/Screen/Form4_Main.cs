@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MobilePumpControl
+namespace MobilePumpControl.Screen
 {
-    public partial class Form1 : Form
+    public partial class Form4_Main : Form
     {
-        public Form1()
+        public Form4_Main()
         {
             InitializeComponent();
         }

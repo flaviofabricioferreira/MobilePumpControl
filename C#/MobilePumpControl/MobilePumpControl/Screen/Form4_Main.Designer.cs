@@ -1,6 +1,6 @@
-﻿namespace MobilePumpControl
+﻿namespace MobilePumpControl.Screen
 {
-    partial class Form1
+    partial class Form4_Main
     {
         /// <summary>
         /// Required designer variable.
@@ -28,12 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // Form4_Main
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Name = "Form4_Main";
+            this.Text = "Show Information";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
     }
 }
-

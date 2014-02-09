@@ -9,6 +9,9 @@ namespace MobilePumpControl
     static class Program
     {
         /// <summary>
+        /// 
+        /// 
+        /// 
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
@@ -16,7 +19,14 @@ namespace MobilePumpControl
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            
+            //AUmento do buffer do console para testes
+            Console.BufferHeight = 1000;
+            Console.BufferWidth = 100;
+
+
+            Application.Run(new Form1SplahScreen());
         }
     }
 }
+
