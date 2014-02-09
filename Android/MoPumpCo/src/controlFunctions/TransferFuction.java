@@ -115,7 +115,7 @@ public class TransferFuction {
 	 */
 	public TransferFuction multiplyTranferFuctionby(TransferFuction tf2){
 		
-		
+		//This implematation of android was because the parameters are passed by reference		
 		
 		List<Double> inputNum2 = new ArrayList<Double>();
 		List<Double> inputDen2 = new ArrayList<Double>();

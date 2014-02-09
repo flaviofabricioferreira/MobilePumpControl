@@ -8,10 +8,11 @@ namespace MobilePumpControl.ScopeDatas
 {
     class SignalsImporter
     {
-        public static double[] importSignal(String address) {
+        public static List<double> importSignal(String address) {
 
             string[] lines = System.IO.File.ReadAllLines(address);
-            double[] signal = new double[lines.Length];
+            //double[] signal = new double[lines.Length];
+            List<double> signal = new List<double>();
 
             for (int i = 0; i < lines.Length; i++)
             {

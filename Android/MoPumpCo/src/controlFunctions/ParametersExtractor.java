@@ -386,19 +386,7 @@ public class ParametersExtractor {
 		return average;
 	}
 	
-	private double maxCalcFromArray(double[] numbers) {
-		 
-		double max = numbers[0];
-        
-        for(int i=0; i < numbers.length ; i++){
-            if(numbers[i]>max)  
-            {  
-               max=numbers[i];  
-            }  
-        }
 
-        return max;
-	}
 	
 	private double minCalcFromArray(double[] numbers) {
 		 

@@ -26,7 +26,7 @@ namespace MobilePumpControl.Screen
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form formMain = new Form4_Main();
+            Form formMain = new Form4_Main(signalInput,signaloutput);
             formMain.Show();  
         }
 

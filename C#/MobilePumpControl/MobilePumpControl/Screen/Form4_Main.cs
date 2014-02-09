@@ -12,7 +12,7 @@ namespace MobilePumpControl.Screen
 {
     public partial class Form4_Main : Form
     {
-        public Form4_Main()
+        public Form4_Main(double[] sigInput,double[] signOutput)
         {
             InitializeComponent();
         }

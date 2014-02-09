@@ -139,10 +139,7 @@ K=(yend-ystart)/abs(xend-xstart)*dirx*diry
 order=n
 
 %% plot results
-fprintf('---------------------------------------------------------------------------')
 Gref=tf(K,1,'InputDelay',Tt)%InputDelay is a numeric vector specifying a time delay for each input channel
-%%Gref=tf(K,1)%InputDelay is a numeric vector specifying a time delay for each input channel
-fprintf('---------------------------------------------------------------------------')
 %Gref= K*exp(-Tt*s)
 for i=1:n
     Gref=Gref*tf(1,[T1 1]);%K*exp(-Tt*s)*   1      

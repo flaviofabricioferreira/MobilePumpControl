@@ -47,6 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControlFunctions\OtherFunctions.cs" />
+    <Compile Include="ControlFunctions\ParametersExtractor.cs" />
+    <Compile Include="ControlFunctions\TransferFunction.cs" />
     <Compile Include="ScopeDatas\SignalsImporter.cs" />
     <Compile Include="Screen\Form1_SplashScreen.cs">
       <SubType>Form</SubType>
@@ -108,9 +111,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ControlFunctions\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="ScopeDatas\signal1.txt" />
     <Content Include="ScopeDatas\signal2.txt" />

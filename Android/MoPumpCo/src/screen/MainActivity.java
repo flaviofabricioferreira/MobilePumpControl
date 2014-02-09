@@ -195,15 +195,15 @@ public class MainActivity extends Activity {
 
 	private void automaticControllerNOPDT(double gK,double timeT1,int deadTime, int order) {
 		
-		List<Double> inputN = new ArrayList<Double>();
-		inputN.add(0.0);
-		inputN.add(0.0);
-		inputN.add(1.0);
-			
-		List<Double> inputD = new ArrayList<Double>();
-		inputD.add(1.0);
-		inputD.add(1.0);
-		inputD.add(1.0);
+//		List<Double> inputN = new ArrayList<Double>();
+//		inputN.add(0.0);
+//		inputN.add(0.0);
+//		inputN.add(1.0);
+//			
+//		List<Double> inputD = new ArrayList<Double>();
+//		inputD.add(1.0);
+//		inputD.add(1.0);
+//		inputD.add(1.0);
 
 		double Ks= gK;
 		
@@ -221,12 +221,12 @@ public class MainActivity extends Activity {
 		}			
 		Gs = Gs2;	
 		
-//		[Ns,Ds]=tfdata(Ks*Gs,'v')
-		List<Double> numK = new ArrayList<Double>();
-		numK.add(Ks);
-		List<Double> denK = new ArrayList<Double>();
-		denK.add(1.0);
-		TransferFuction K = new TransferFuction(numK,denK);
+////		[Ns,Ds]=tfdata(Ks*Gs,'v')
+//		List<Double> numK = new ArrayList<Double>();
+//		numK.add(Ks);
+//		List<Double> denK = new ArrayList<Double>();
+//		denK.add(1.0);
+//		TransferFuction K = new TransferFuction(numK,denK);
 		
 //		Gs=tf(Ks,[0.1 1])*Gs	
 		List<Double> numKK = new ArrayList<Double>();
