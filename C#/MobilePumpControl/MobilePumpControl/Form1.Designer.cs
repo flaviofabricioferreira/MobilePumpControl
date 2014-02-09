@@ -1,4 +1,4 @@
-﻿namespace TCCcode
+﻿namespace MobilePumpControl
 {
     partial class Form1
     {
@@ -28,33 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonIniciar = new System.Windows.Forms.Button();
-            this.SuspendLayout();
-            // 
-            // buttonIniciar
-            // 
-            this.buttonIniciar.Location = new System.Drawing.Point(12, 12);
-            this.buttonIniciar.Name = "buttonIniciar";
-            this.buttonIniciar.Size = new System.Drawing.Size(75, 23);
-            this.buttonIniciar.TabIndex = 0;
-            this.buttonIniciar.Text = "Iniciar";
-            this.buttonIniciar.UseVisualStyleBackColor = true;
-            this.buttonIniciar.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // Form1
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.buttonIniciar);
-            this.Name = "Form1";
             this.Text = "Form1";
-            this.ResumeLayout(false);
-
         }
 
         #endregion
-
-        private System.Windows.Forms.Button buttonIniciar;
     }
 }
+
