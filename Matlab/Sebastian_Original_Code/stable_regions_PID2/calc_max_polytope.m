@@ -42,7 +42,7 @@ for i=1:length(KPvec)
     plotx=polyx;
     ploty=polyy;
     plotz=KP.*ones(1,length(plotx));
-    patch(plotx,ploty,plotz,[0.6 0.6 0.6],'LineStyle','-');
+    patch(plotx,ploty,plotz,[1 0 0],'LineStyle','-');
 end
 
 plotz=KPAmax.*ones(1,length(polyxmax));

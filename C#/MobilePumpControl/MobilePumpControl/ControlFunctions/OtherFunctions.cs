@@ -89,6 +89,17 @@ namespace MobilePumpControl.ControlFunctions
             return max;
         }
 
+        public static void showVectorDouble(List<double> Lista) {
+
+            Console.WriteLine("TAMANHO DA Lista = " + Lista.Count);
+            for (int i = 0; i < Lista.Count; i++)
+            {
+                Console.WriteLine("Lista[" + i + "] = " + Lista[i]);
+            }
+
+        }
+
+
 
     }
 }

@@ -255,36 +255,7 @@ public class MainActivity extends Activity {
 				                                                            D.getFn(),0, L, 
 				                                                            denominatorD, numeratorN,
 				                                                            D.getL(), 0.1, true);
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		System.out.println("==========numeratorN=========");
+	    System.out.println("==========numeratorN=========");
 		OtherFunctions.showList(numeratorN);
 		
 		System.out.println("==========denominatorD=========");

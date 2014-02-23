@@ -21,29 +21,29 @@ namespace MobilePumpControl.ControlFunctions
     class ParametersExtractor
     {
     
-    private List<double> xVal {get ; private set;}
-    private List<double> yVal { get; private set; }
+    private List<double> xVal {get ; set;}
+    private List<double> yVal { get; set; }
     
-    private double xStart {get ; private set;}
-    private double yStart {get ; private set;}    
-    private double xEnd {get ; private set;}
-    private double yEnd {get ; private set;}
+    private double xStart {get ; set;}
+    private double yStart {get ; set;}    
+    private double xEnd {get ; set;}
+    private double yEnd {get ; set;}
 
-    private List<int> timeVector { get; private set; }
+    private List<int> timeVector { get; set; }
 	
-    private int xDirection {get ; private set;}
-	private int yDirection {get ; private set;}
+    private int xDirection {get ; set;}
+	private int yDirection {get ; set;}
 	
-    private int stepTime {get ; private set;}
-	private int deadTimeTt {get ; private set;}
+    private int stepTime {get ; set;}
+	public int deadTimeTt {get ; set;}
 	
-    private int TimeT10P {get ; private set;}
-	private int TimeT50P {get ; private set;}
-	private int TimeT90P {get ; private set;}
+    private int TimeT10P {get ; set;}
+	private int TimeT50P {get ; set;}
+	private int TimeT90P {get ; set;}
 
-    private double gainK { get; private set; }
-    private double timeT1 { get; private set; }
-    private int nNearTPCV { get; private set; }
+    public double gainK { get; set; }
+    public double timeT1 { get; set; }
+    public int nNearTPCV { get; set; }
     // nearest zeitprozentkennwert -> nearest time percentage characteristic value
 
         public ParametersExtractor(List<double> signalInput, List<double> signalOutput) {
@@ -52,79 +52,75 @@ namespace MobilePumpControl.ControlFunctions
 
             xVal = signalInput.GetRange((120 - 1), 181);
 
-            //Array.Copy(signalInput, (120 - 1), xVal, 0, 181);
-            
-            
-            /*Copies elements from original into a new array,
-         *from indexes start (inclusive) to end (EXclusive)
-         */
-            //setxVal(Arrays.copyOfRange(signalInput, 120 - 1, 300 - 1 + 1));
-            //setxValLenght(xVal.length);
-
-            //		for(int i =0;i<xVal.length;i++){
-            //			//System.out.println("XVAL["+i+"]="+ xVal[i]);
-            //		}
-
-            yVal = signalInput.GetRange((120 - 1), 181);
-
-            //Array.Copy(signalOutput, (120 - 1), yVal, 0, 181);
-
-            /*Copies elements from original into a new array,
-             *from indexes start (inclusive) to end (EXclusive)
-             */
-            //setyVal(Arrays.copyOfRange(signalOutput, 120 - 1, 300 - 1 + 1));
-            //setyValLenght(yVal.length);
-
-            //		for(int j =0;j<yVal.length;j++){
-            //			//System.out.println("YVAL["+j+"]="+ yVal[j]);
-            //		}
-
+            yVal = signalOutput.GetRange((120 - 1), 181);
 
             timeVector = initializeTimeVector((yVal.Count - 1));
-            //setTimeVector(initializeTimeVector(getyValLenght() - 1));
+
 
             xDirection = determineXDirection(xVal[xVal.Count - 1], xVal[0]);
-            //setxDirection(determineXDirection(this.xVal[this.xValLenght - 1], this.xVal[0]));
-            //System.out.println("XDIRECTION IS = "+getxDirection());
+
 
             stepTime = determineStepTime(xVal.Count, xDirection);
-            //setStepTime(determineStepTime(getxValLenght(), getxDirection()));
-            //System.out.println("STEPTIME IS = "+getStepTime() + "+1s");
 
             calculateStarAndEndTime();
-            //		System.out.println("XSTART IS = "+ getxStart());
-            //		System.out.println("XEND IS = "+ getxEnd());
-            //		System.out.println("YSTART IS = "+ getyStart());
-            //		System.out.println("YEND IS = "+ getyEnd());
-
+ 
             yDirection = determineYDirection(yVal[yVal.Count - 1], yVal[0]);
-            //setyDirection(determineYDirection(this.yVal[this.yValLenght - 1], this.yVal[0]));
-            //System.out.println("YDIRECTION IS = "+getyDirection());
 
             deadTimeTt = determineDeadTime(yVal.Count, yDirection, stepTime);
-            //System.out.println("DEADTIME TT IS = "+ getDeadTimeTt());
 
-            flipYValIfNecessary(getyDirection(), getyStart(), getyEnd(), getyValLenght());
 
-            setTimeT10P(calculateTimeX(10));
-            //		System.out.println("TIME T10P IS = "+ getTimeT10P());
-            setTimeT50P(calculateTimeX(50));
-            //		System.out.println("TIME T50P IS = "+ getTimeT50P());
-            setTimeT90P(calculateTimeX(90));
-            //		System.out.println("TIME T90P IS = "+ getTimeT90P());
+            flipYValIfNecessary(yDirection, yStart, yEnd, yVal.Count);
 
-            setnNearTPCV(findNearestZeitprozentkennwert());//find nearest time percentage characteristic value
+            TimeT10P = calculateTimeX(10);
 
-            setTimeT1(calculateTimeT1());
-            //		System.out.println("TIME T1 IS = "+ getTimeT1());
-            setGainK(calculateGainK());
-            //      System.out.println("GAIN K IS = "+ getGainK());
-		
-		
+            TimeT50P = calculateTimeX(50);
 
+            TimeT90P = calculateTimeX(90);
+
+            nNearTPCV = findNearestZeitprozentkennwert(TimeT10P,TimeT90P);//find nearest time percentage characteristic value
+
+            timeT1 = calculateTimeT1(nNearTPCV,TimeT10P,TimeT50P,TimeT90P);
+    
+            gainK =  calculateGainK();
+ 		
         }
 
-        private void initializeParameters() { 
+
+
+        private void flipYValIfNecessary(int yDir, double ySt, double yE, int ylenght)
+        {
+            double yend2 = 0;
+
+            if (yDir == -1)
+            {
+
+                //System.out.println("YDIRECTION == -	1  IS NECESSARY TO FLIP YVAL ");
+                //System.out.println("BEFORE YSTART ="+yStart+" and YEND = "+yEnd);
+
+                for (int i = 0; i < ylenght; i++)
+                {
+                    this.yVal[i] = (ySt + yE) - this.yVal[i];
+
+                }
+
+                //yend2=ystart;
+                //yStart = yEnd;
+                //yEnd = yend2;
+                yend2 = this.yVal[0];
+                yStart = yVal[ylenght];
+                yEnd = yend2;
+                
+                //setyStart(this.yVal[ylenght]);
+                //setyEnd(yend2);
+                //System.out.println("AFTER YSTART ="+getyStart()+" and YEND = "+getyEnd());
+
+
+            }
+
+            //System.out.println("YDIRECTION == /+ 1 NOT IS NECESSARY TO FLIP YVAL ");
+        }
+
+         private void initializeParameters() { 
 
           xStart = 0;
           yStart = 0;    
@@ -163,7 +159,7 @@ namespace MobilePumpControl.ControlFunctions
             List<int> timVec = new List<int>();
 		    
             for(int i=0; i<lenght; i++){
-    			timVec[i]=i;
+    			timVec.Add(i);
 		    }
 
             return timVec;
@@ -248,15 +244,20 @@ namespace MobilePumpControl.ControlFunctions
             /*Copies elements from original into a new array,
              *from indexes start (inclusive) to end (EXclusive)*/
 
-            yStart = meanCalcFromArray(yVal.GetRange(0,(stepTime+1)));
-            //setyStart(meanCalcFromArray(Arrays.copyOfRange(this.yVal, 0, stepTime + 1)));
 
-            yEnd = meanCalcFromArray(yVal.GetRange((yVal.Count -11), yVal.Count));
+            yStart = OtherFunctions.meanCalcFromArray(yVal.GetRange(0, (stepTime + 1)));
+            //setyStart(meanCalcFromArray(Arrays.copyOfRange(this.yVal, 0, stepTime + 1)));
+    
+                       
+           // List<double> testtt = yVal.GetRange((yVal.Count - 11), 11);
+           // for (int i = 0; i < testtt.Count; i++){
+           //     Console.WriteLine("Yval["+i+"] = " + testtt[i]);
+            //}
+            
+            yEnd = OtherFunctions.meanCalcFromArray(yVal.GetRange((yVal.Count - 11), 11));
             //setyEnd(meanCalcFromArray(Arrays.copyOfRange(this.yVal, this.yValLenght - 11, this.yValLenght)));
 
         }
-
-    
 
         /**
         *Determine the Y Direction
@@ -291,15 +292,25 @@ namespace MobilePumpControl.ControlFunctions
 		
 		
 		    //double dydt[]= new double[lenghtYVal];
-            List<double> dydt= new List<double>(lenghtYVal);
+            List<double> dydt = new List<double>(lenghtYVal);
+
+            
 
     		for(int i=0;i<lenghtYVal;i++){
-		    	dydt[i]=0;
+		    	dydt.Add(0.0d);
 	    	}
-		
+
+            
+            
 		    // Calculus of the maximum Delta
 		    for(int z=1; z<lenghtYVal-1; z++){ // %% from the second until the penultimate
 			    dydt[z] = yDir*((yVal[z+1]-yVal[z-1])/2);
+                Console.WriteLine("---------------Z= " + z+" -------------");
+                Console.WriteLine("dydt[z=" + z + "]="+dydt[z]);
+                Console.WriteLine("yVal[z+1=" + (z + 1) + "]="+ yVal[z + 1]);
+                Console.WriteLine("yval[z-1=" + (z - 1) + "]="+ yVal[z - 1]);
+                Console.WriteLine("yval[(yVal[z+1]-yVal[z-1])/2]=" + ((yVal[z + 1] - yVal[z - 1])/2));
+                Console.WriteLine("dydt[z=" + z + "]=" + dydt[z]);
 			    if (dydt[z] > maxDyDt) {
 				    maxDyDt = dydt[z]; // Value with double type
 				    maxDyDtX = z;	   // Time with int type 
@@ -310,21 +321,32 @@ namespace MobilePumpControl.ControlFunctions
 		    /*Copies elements from original into a new array,
 		    *from indexes start (inclusive) to end (EXclusive)*/
 		    //double arrayN[] = Arrays.copyOfRange(dydt, tstep-20, tstep+1);
-            List<double> arrayN = dydt.GetRange((tstep-20),(tstep+1));
-		    
+
+            // ARRAY N NAO ESTA COM VALORES E SIM COM 0s
+            List<double> arrayN = dydt.GetRange((tstep-10),11);
+            Console.WriteLine("ARRAY N");
+            OtherFunctions.showVectorDouble(arrayN);
+            // N1 DEVERIA SER 0.8
             double n1 = OtherFunctions.maxCalcFromArray(arrayN);
-            double n2 = OtherFunctions.minCalcFromArray(arrayN);	
+            Console.WriteLine("N1 = " + n1);
+            // N2 DEVERIA SER -3
+            double n2 = OtherFunctions.minCalcFromArray(arrayN);
+            Console.WriteLine("N2 = " + n2);
+
 //		for(int i =0;i<arrayN.length;i++){
 //		//System.out.println("ARRAYN["+i+"]="+ arrayN[i]);
 //     	}		
 		
 		    dYdtNoise = n1- n2;
+            Console.WriteLine("dYdtNoise = " + dYdtNoise);
 //		//System.out.println("N1 = " + n1);
 //		//System.out.println("N2 = " + n2);
 		//System.out.println("dYdtNoise = " + dYdtNoise);
             //while (dydt[Tt + 1] <= (OtherFunctions.meanCalcFromArray(Arrays.copyOfRange(dydt, tstep - 10, tstep + 1)) + dYdtNoise))
-            while (dydt[Tt + 1] <= (OtherFunctions.meanCalcFromArray(dydt.GetRange(( tstep - 10),( tstep + 1))) + dYdtNoise))
+ 
+            while ( dydt[Tt + 1] <= ( OtherFunctions.meanCalcFromArray(dydt.GetRange((tstep - 11),11)) + dYdtNoise) )
             {
+                //Console.WriteLine("DEU PAUUU em Tt= "+Tt);
     			Tt=Tt+1;
 	    	}
 		
@@ -333,6 +355,159 @@ namespace MobilePumpControl.ControlFunctions
             deadTimeTt = Tt;
 		    return Tt;
 	    }
+
+        private int calculateTimeX(double percentage)
+        {
+
+            int stepT = stepTime;
+            int tT = deadTimeTt;
+            int tX = stepT + tT;
+
+            while ((this.yVal[tX] - yStart) <= ((yEnd - yStart) * (percentage / 100)))
+            {
+
+                //			//System.out.println("-----------------Tx IS on START = "+ tX);
+                //			//System.out.println("yval(t10)-ystart = " + (this.yVal[tX]-getyStart()));
+                //			//System.out.println("0.1*(yend-ystart) = " + ((getyEnd()-getyStart())*(percentage/100)));
+
+                tX = tX + 1;
+            }
+
+            tX = tX - stepT - tT;
+            return tX;
+
+        }
+
+        private int findNearestZeitprozentkennwert(double t10,double t90)
+        {
+
+            int n = 0;
+            double mueN = 0;
+            double mueNM1 = 0;
+            //double t10 = TimeT10P;
+            //double t90 = TimeT90P;
+
+            //System.out.println("================findNearestZeitprozentkennwert()==========="+ n);
+            //System.out.println("T10 = "+ t10);
+            //System.out.println("T90 = "+ t90);
+            //System.out.println("T10/T90 = "+ (t10/t90));
+
+            while ((t10 / t90 > mueN) && (n < 25))
+            {
+
+
+                mueNM1 = mueN;
+                n = n + 1;
+                //System.out.println("MUE_N  BEFORE= "+ mueN);
+                mueN = zeitprozentkennwert(n, 10) / zeitprozentkennwert(n, 90);
+                //System.out.println("MUE_N  AFTER= "+ mueN);
+                //System.out.println("N= "+ n);
+            }
+
+            if ((Math.Abs(t10 / t90 - mueNM1) < Math.Abs(t10 / t90 - mueN)))
+            {
+                //System.out.println("n = "+ n);
+                n = n - 1;
+            }
+
+
+            //		System.out.println("NUMBERN = "+ n);
+
+            return n;
+
+        }
+
+        private double zeitprozentkennwert(int n, int m)
+        {
+
+            double maxTol = 0.000001; //Genauigkeit -> Accuracy		
+            double tau = n * ((double)m / 100 + 0.5); //Anfangswert Abschätzung -> Initial value estimation
+            // Division of Int/Int types its not possible
+            double deltaTau = 0;
+            double sum = 0;
+            double n1, n2, n3, n4 = 0;
+            double npow1 = 0;
+            double nfac1 = 0;
+
+            Boolean flag = true;
+            while (flag)
+            {
+                sum = 0;
+                for (int i = 0; i < n; i++)
+                {
+                    
+                    npow1 = Math.Pow(tau, i);
+                    
+                    nfac1 = factorial(i);
+                    sum = sum + npow1 / nfac1;
+                    //sum = sum+(Math.pow(tau,i))/factorial(i);
+                }
+                
+                
+                n1 = sum;
+                n2 = (1 - ((double)m / 100)) * Math.Exp(tau);// Division of Int/Int types its not possible
+                n3 = factorial(n - 1);
+                n4 = Math.Pow(tau, (n - 1));
+                deltaTau = (n1 - n2) * n3 / n4;
+                //deltaTau =(sum-(1-m/100)*Math.exp(tau))*factorial(n-1)/Math.pow(tau,(n-1));
+                tau = tau + deltaTau;
+                if (Math.Abs(deltaTau) < maxTol)
+                {
+                    flag = false;
+                }
+            }
+
+            return tau;
+        }
+
+        private int factorial(int input)
+        {
+            int x, fact = 1;
+            for (x = input; x > 1; x--)
+                fact *= x;
+
+            return fact;
+
+        }
+
+        private double calculateTimeT1(int n, double t10P, double t50P,double t90P)
+        {
+
+            double t = 0;
+            //int n = getnNearTPCV();
+            //double t10P = getTimeT10P();
+            //double t50P = getTimeT50P();
+            //double t90P = getTimeT90P();
+
+            double zPKn10 = zeitprozentkennwert(n, 10);
+            double zPKn50 = zeitprozentkennwert(n, 50);
+            double zPKn90 = zeitprozentkennwert(n, 90);
+
+            double div1 = t10P / zPKn10;
+            double div2 = t50P / zPKn50;
+            double div3 = t90P / zPKn90;
+
+            t = ((double)1 / 3) * (div1 + div2 + div3);// Division of Int/Int types its not possible
+            //t=(1/3)*(t10P/zPKn10+t50P/zPKn50+t90P/zPKn90);
+            //t=(1/3)*(t10P/zeitprozentkennwert(n,10)+t90P/zeitprozentkennwert(n,50)+t90P/zeitprozentkennwert(n,90));
+            //		System.out.println("OUTPUT T1 = "+ t);
+
+            return t;
+        }
+
+        private double calculateGainK()
+        {
+            double k = 0;
+
+            double mult = xDirection * yDirection;
+            double sub = (yEnd - yStart);
+            double abs = Math.Abs(xEnd - xStart);
+
+            k = (sub / abs) * (mult);
+            //		k = (getyEnd()-getyStart())/Math.abs(getxEnd()-getxStart())*getxDirection()*getyDirection();
+            return k;
+        }
+
 
     }
 }

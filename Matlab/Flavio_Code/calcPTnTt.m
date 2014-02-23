@@ -42,6 +42,8 @@ xstart=xval(tstep-1);
 xend=xval(end);
 ystart=mean(yval(1:tstep))
 yend=mean(yval(end-10:end))
+ABCD = yval(end-10:end)
+
 
 %% determine y direction
 diry=0;
@@ -63,14 +65,14 @@ for z=2:length(yval)-1
     end
 end 
 Tt=tstep;
-n1 = max(dydt(tstep-10:tstep));
-n2 = min(dydt(tstep-10:tstep));
+n1 = max(dydt(tstep-10:tstep))
+n2 = min(dydt(tstep-10:tstep))
 dydtnoise=n1-n2;
 %%dydtnoise=(max(dydt(tstep-10:tstep))-min(dydt(tstep-10:tstep)));
 while dydt(Tt+1)<=mean(dydt(tstep-10:tstep))+dydtnoise;
     Tt=Tt+1;
 end
-Tt=Tt-tstep-1;
+Tt=Tt-tstep-1
 
 %% flip yval if necessary
 if diry==-1

@@ -14,8 +14,8 @@ namespace MobilePumpControl.Screen
 {
     public partial class Form2InputSelection : Form
     {
-
-        double[] signalInput;
+        
+        List<double> signalInput;
 
         public Form2InputSelection()
         {
@@ -25,7 +25,7 @@ namespace MobilePumpControl.Screen
         private void button1_Click(object sender, EventArgs e)
         {
             this.signalInput = SignalsImporter.importSignal(@"C:\Users\Flavio\Documents\GitHub\MobilePumpControl\C#\MobilePumpControl\MobilePumpControl\ScopeDatas\signal2.txt");
-            Console.WriteLine("The size of Signal 2 is" + signalInput.Length);
+            Console.WriteLine("The size of Signal 2 is" + signalInput.Count);
             buttonInputNext.Enabled = true;
         }
 

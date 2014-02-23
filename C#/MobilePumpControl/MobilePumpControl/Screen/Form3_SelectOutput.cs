@@ -15,10 +15,10 @@ namespace MobilePumpControl.Screen
     public partial class Form3_SelectOutput : Form
     {
 
-        private double[] signaloutput;
-        private double[] signalInput;
+        List<double> signaloutput;
+        List<double> signalInput;
 
-        public Form3_SelectOutput(double[] sigInp)
+        public Form3_SelectOutput(List<double> sigInp)
         {
             InitializeComponent();
             this.signalInput = sigInp;
@@ -33,14 +33,14 @@ namespace MobilePumpControl.Screen
         private void button2_Click(object sender, EventArgs e)
         {
             this.signaloutput = SignalsImporter.importSignal(@"C:\Users\Flavio\Documents\GitHub\MobilePumpControl\C#\MobilePumpControl\MobilePumpControl\ScopeDatas\signal1.txt");
-            Console.WriteLine("The size of Signal 1 is" + signaloutput.Length);
+            Console.WriteLine("The size of Signal 1 is" + signaloutput.Count);
             buttonOutputNext.Enabled = true;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             this.signaloutput = SignalsImporter.importSignal(@"C:\Users\Flavio\Documents\GitHub\MobilePumpControl\C#\MobilePumpControl\MobilePumpControl\ScopeDatas\signal4.txt");
-            Console.WriteLine("The size of Signal 4 is" + signaloutput.Length);
+            Console.WriteLine("The size of Signal 4 is" + signaloutput.Count);
             buttonOutputNext.Enabled = true;
         }
     }

@@ -9,8 +9,8 @@ namespace MobilePumpControl.ControlFunctions
 {
     public class TransferFunction
     {
-        private List<double> Numerator {get ; private set;}        
-        private List<double> Denominator {get; private set;}
+        private List<double> Numerator {get ; set;}        
+        private List<double> Denominator {get; set;}
         
         public TransferFunction(List<double> Num,List<double> Den){
 
